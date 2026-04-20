@@ -6,7 +6,7 @@ namespace Baris\StoreBodyClass\Observer;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Store\Model\StoreManagerInterface;
-use Magento\Framework\View\Page\Config;
+use Magento\Framework\View\Page\Config as PageConfig;
 
 class AddStoreBodyClass implements ObserverInterface
 {
