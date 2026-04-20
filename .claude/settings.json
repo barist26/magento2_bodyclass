@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git init *)",
+      "Bash(git config *)",
+      "Bash(git add *)",
+      "Bash(git commit -m 'feat: add Store Body Class module for Magento 2 *)",
+      "Bash(git remote *)",
+      "Bash(git branch *)",
+      "Bash(git push *)",
+      "Bash(git pull *)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\info\\Desktop\\magento2_bodyclass\\temp_module"
+    ]
+  }
+}
