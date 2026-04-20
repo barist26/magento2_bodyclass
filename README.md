@@ -15,30 +15,55 @@ A lightweight, production-ready Magento 2 module that automatically adds store c
 
 ## Installation
 
-### 1. Add the module to your Magento installation
+### Option 1: Using Composer (Recommended)
 
-Copy the module files to:
-```
-app/code/Baris/StoreBodyClass/
+Add the repository to your Magento project's `composer.json`:
+
+```json
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/barist26/magento2_bodyclass"
+        }
+    ]
+}
 ```
 
-### 2. Enable the module
+Then install via composer:
 
 ```bash
-php bin/magento module:enable Baris_StoreBodyClass
+composer require baris/magento2-store-bodyclass:dev-main
 ```
 
-### 3. Run setup upgrade
+### Option 2: Manual Installation
 
-```bash
-php bin/magento setup:upgrade
-```
+1. **Copy the module** to your Magento installation:
+   ```bash
+   cp -r Baris/StoreBodyClass /path/to/magento2/app/code/Baris/
+   ```
 
-### 4. Optional: Recompile (if in production mode)
+2. **Enable the module**:
+   ```bash
+   php bin/magento module:enable Baris_StoreBodyClass
+   ```
 
-```bash
-php bin/magento setup:di:compile
-```
+### After Installation (Both Methods)
+
+3. **Run setup upgrade**:
+   ```bash
+   php bin/magento setup:upgrade
+   ```
+
+4. **Optional: Recompile** (if in production mode):
+   ```bash
+   php bin/magento setup:di:compile
+   ```
+
+5. **Clear cache**:
+   ```bash
+   php bin/magento cache:flush
+   ```
 
 ## How It Works
 
@@ -112,16 +137,23 @@ body.store-fr.store-name-french-store {
 ### Files Structure
 
 ```
+magento2_bodyclass/ (Repository root)
+├── Baris/StoreBodyClass/
+│   ├── registration.php          # Module registration
+│   ├── composer.json             # Package metadata
+│   ├── etc/
+│   │   ├── module.xml           # Module configuration
+│   │   └── frontend/
+│   │       └── events.xml       # Observer event declaration
+│   └── Observer/
+│       └── AddStoreBodyClass.php # Main observer class
+├── README.md                     # Documentation
+└── composer.json                 # Root composer config for distribution
+```
+
+When installed via composer, the module is placed in:
+```
 app/code/Baris/StoreBodyClass/
-├── registration.php              # Module registration
-├── composer.json                 # Package metadata
-├── README.md                     # This file
-├── etc/
-│   ├── module.xml               # Module configuration
-│   └── frontend/
-│       └── events.xml           # Observer event declaration
-└── Observer/
-    └── AddStoreBodyClass.php    # Main observer class
 ```
 
 ### How the Observer Works
@@ -167,10 +199,24 @@ Open the browser's developer tools (F12) and inspect the `<body>` tag to confirm
 
 ### Module not showing up
 
-1. Verify files are in `app/code/Baris/StoreBodyClass/`
-2. Clear code compilation cache: `rm -rf var/generation/*`
-3. Re-enable module: `php bin/magento module:enable Baris_StoreBodyClass`
-4. Run setup: `php bin/magento setup:upgrade`
+1. **Verify composer installation** (if using composer):
+   ```bash
+   composer show baris/magento2-store-bodyclass
+   ```
+
+2. **Verify files** are in `app/code/Baris/StoreBodyClass/`
+
+3. **Clear compilation cache**:
+   ```bash
+   rm -rf var/generation/*
+   rm -rf var/di/*
+   ```
+
+4. **Re-enable module**:
+   ```bash
+   php bin/magento module:enable Baris_StoreBodyClass
+   php bin/magento setup:upgrade
+   ```
 
 ### Classes not appearing on page
 
