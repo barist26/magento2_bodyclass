@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="page_render_before">
+        <observer name="baris_store_body_class_observer" instance="Baris\StoreBodyClass\Observer\AddStoreBodyClass"/>
+    </event>
+</config>
